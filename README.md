@@ -1,6 +1,9 @@
 
 # Team Todo-List
 
+## Demo
+You can find a demo of the project: [here](http://rnam-team-todo-list.surge.sh/).
+
 ## Tech stack
 Redux, Redux, Styled-components, Jest, Storybook
 
