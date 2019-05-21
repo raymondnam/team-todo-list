@@ -9,6 +9,8 @@ const Container = styled.div`
   box-shadow: 4px 1px 5px 0px rgba(0,0,0,0.16);
   height: 100vh;
   padding: 0 10px;
+  background: white;
+  z-index: 100;
 `;
 
 const SideBar = () => (

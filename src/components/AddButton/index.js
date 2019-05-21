@@ -11,6 +11,7 @@ const ButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const RoundButton = styled.div`
