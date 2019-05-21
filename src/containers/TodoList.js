@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import AddButton from 'components/AddButton';
 import ListItem from 'components/ListItem';
 import { connect } from 'react-redux';
+import { addTodo, toggleTodo, deleteTodo, editTodo } from 'actions/todoActions';
 
 const ListContainer = styled.ul`
   padding: 15px;
@@ -14,23 +15,31 @@ const ButtonContainer = styled.div`
   padding: 15px;
 `;
 
-const TodoList = ({ todoList }) => {
+const TodoList = ({ todoList, addTodo, toggleTodo, deleteTodo, editTodo }) => {
   return (
     <>
       <ListContainer>
         {todoList.map(todo => (
-          <ListItem key={todo.id} content={todo.content} />
+          <ListItem
+            key={todo.id}
+            content={todo.content}
+            isCompleted={!!todo.isCompleted}
+            onDelete={() => deleteTodo(todo.id)}
+            onToggle={() => toggleTodo(todo.id)}
+            onEdit={value => editTodo(todo.id, value)}
+          />
         ))}
-        {todoList.length === 0 && 'Click on the button below to add a new to-do'}
+        {todoList.length === 0 &&
+          'Click on the button below to add a new to-do'}
       </ListContainer>
       <ButtonContainer>
-        <AddButton label="Add a to-do" />
+        <AddButton label="Add a to-do" onClick={addTodo} />
       </ButtonContainer>
     </>
   );
 };
 
-const actions = {};
+const actions = { addTodo, toggleTodo, deleteTodo, editTodo };
 
 function mapStateToProps(state) {
   const { todoList } = state.todos;

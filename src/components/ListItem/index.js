@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { ReactComponent as TrashIcon } from 'static/icons/trash.svg';
@@ -36,22 +36,56 @@ const Content = styled.span`
     `};
 `;
 
-const ListItem = ({ content, isCompleted, onChange }) => (
-  <Container>
-    <div>
-      <input type="checkbox" checked={isCompleted} onChange={onChange} />
-      <Content isCompleted={isCompleted}>{content}</Content>
-    </div>
-    <div className="delete">
-      <TrashIcon height={12} width={12} fill="#4609d9" />
-    </div>
-  </Container>
-);
+const Input = styled.input`
+  border: 0;
+  padding: 5px;
+  font-size: 14px;
+`;
+
+const ListItem = ({ content, isCompleted, onToggle, onDelete, onEdit }) => {
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEditInput = e => {
+    setEditMode(false);
+    onEdit(e.target.value);
+  };
+
+  const handleKeyDown = e => {
+    if (e.key !== 'Enter') return;
+    handleEditInput(e);
+  };
+
+  return (
+    <Container>
+      <div>
+        <input type="checkbox" checked={isCompleted} onChange={onToggle} />
+        {!editMode && (
+          <Content onClick={() => setEditMode(true)} isCompleted={isCompleted}>
+            {content}
+          </Content>
+        )}
+        {editMode && (
+          <Input
+            type="text"
+            defaultValue={content}
+            onBlur={handleEditInput}
+            onKeyDown={handleKeyDown}
+            autoFocus
+          />
+        )}
+      </div>
+      <div className="delete">
+        <TrashIcon height={12} width={12} fill="#4609d9" onClick={onDelete} />
+      </div>
+    </Container>
+  );
+};
 
 ListItem.propTypes = {
   content: PropTypes.string,
   isCompleted: PropTypes.bool,
   onChange: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 export default ListItem;
