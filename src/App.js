@@ -1,9 +1,10 @@
 import React from 'react';
+import SideBar from 'components/SideBar';
 
 function App() {
   return (
     <div>
-      Team To-do List
+      <SideBar />
     </div>
   );
 }
