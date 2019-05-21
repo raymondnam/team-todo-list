@@ -1,6 +1,9 @@
 
 # Team Todo-List
 
+## Tech stack
+Redux, Redux, Styled-components, Jest, Storybook
+
 ## Available Scripts
 
 In the project directory, you can run:
