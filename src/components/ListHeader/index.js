@@ -7,6 +7,7 @@ const Container = styled.div`
   color: white;
   background: #4609d9;
   height: 100px;
+  border-radius: 4px;
 `;
 
 const Name = styled.h3`

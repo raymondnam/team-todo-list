@@ -8,6 +8,7 @@ const Container = styled.div`
   width: 240px;
   box-shadow: 4px 1px 5px 0px rgba(0,0,0,0.16);
   height: 100vh;
+  padding: 0 10px;
 `;
 
 const SideBar = () => (
