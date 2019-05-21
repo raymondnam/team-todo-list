@@ -5,14 +5,14 @@ const initialState = {
   todoList: [],
 };
 
-export default function ideaReducer(state = initialState, action) {
+export default function todoReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.ADD_TODO:
       return {
         ...state,
         todoList: [
           ...state.todoList,
-          { id: uuid(), content: 'new task' },
+          { id: uuid(), content: 'new todo' },
         ],
       };
     case actionTypes.EDIT_TODO:
